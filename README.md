@@ -30,6 +30,26 @@ download script's manifest). Provenance: these are tile captures of itwinjs
 details live in the main repo's `third_party/tile-sample-assets/rpc-dumps/README.md`.
 Provided for demo and testing purposes.
 
+### Git channel (this repo's working tree — no extraction needed)
+
+The same data also lives in this repo's git tree, root-layout identical to the
+main repo's `rpc-dumps/`:
+
+```bash
+git clone git@github.com:chenjinxian/DanQing-Data.git   # SSH — works without a proxy
+# then point the demo app at it:
+#   set DANQING_RPC_DUMP=<clone dir>        (or extract into the prebuilt package's data\rpc-dumps)
+```
+
+Two differences vs. the release zips (GitHub 100 MB/file limit):
+
+- `bridge-edit-sweep-v1/files/12.imdl` (134 MB) is **absent** — the engine's
+  parent-LOD fallback covers it; the release zip `sweep-part1of3` contains it.
+- `bridge-edit-sweep-v1/manifest.json` is a **compact form** (145.6 → 37.2 MB;
+  per-tile guid/iModelId/changesetId/sha256 dropped — the engine reads
+  treeId/contentId/byteLength/file only). The byte-exact original ships in the
+  release zip `sweep-part1of3` and as LFS in the main repo.
+
 ## 中文
 
 [DanQing](https://github.com/chenjinxian/DanQing) 图形引擎示例程序的瓦采集
@@ -52,6 +72,25 @@ Provided for demo and testing purposes.
   自动下载、sha256 校验、解包到 `third_party/tile-sample-assets/rpc-dumps/`
   （`-Model instances60` 单取一个模型）。
 - 预编译包：解压到 `run.cmd` 旁的 `data\rpc-dumps\`。
+
+### Git 通道（本仓工作树——免解压）
+
+同一份完整数据也在本仓 git 树里，目录布局与主仓 `rpc-dumps/` 一致：
+
+```bash
+git clone git@github.com:chenjinxian/DanQing-Data.git   # SSH——免代理可用
+# 然后让示例程序指向它：
+#   set DANQING_RPC_DUMP=<克隆目录>      （或把内容放进预编译包的 data\rpc-dumps）
+```
+
+与 release zip 的两点差异（GitHub 单文件 100MB 硬门所致）：
+
+- `bridge-edit-sweep-v1/files/12.imdl`（134MB）**缺席**——引擎父瓦 LOD 兜底
+  覆盖；release zip `sweep-part1of3` 内含该瓦。
+- `bridge-edit-sweep-v1/manifest.json` 为**紧凑形**（145.6→37.2MB；逐瓦
+  guid/iModelId/changesetId/sha256 字段删减——引擎只读
+  treeId/contentId/byteLength/file）。字节级原件在 release zip
+  `sweep-part1of3` 与主仓 LFS。
 
 完整性：每资产 sha256 见 [checksums.md](checksums.md)（下载脚本 manifest 内嵌
 同款）。数据渊源：itwinjs（MIT）示例 iModel 经 itwinjs display-test-app 采集的
