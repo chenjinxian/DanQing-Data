@@ -16,6 +16,13 @@ Download from the **[data-v1 release](../../releases/tag/data-v1)** assets.
 | `DanQing-Data-v1-instances60.zip` | 60 Instances (instancing showcase, 3,595 tiles) | 305 MB | 135 MB |
 | `DanQing-Data-v1-bridge-edit-base.zip` | Bridge Edit (1.5 km bridge — base views) | 660 MB | 199 MB |
 | `DanQing-Data-v1-bridge-edit-sweep-part1..3of3.zip` | Bridge Edit full-tree sweep (380,738 tiles; extract all three parts into the same folder) | 5.1 GB | 1.8 GB total |
+| `DanQing-Data-v1-newbridge-v1.zip` | New Bridge (10 km bridge — base manifests) | — | <1 MB |
+| `DanQing-Data-v1-newbridge-sweep-v1-part1..12of12.zip` | New Bridge sweep (d1–d8, 5,407 tiles — the browsing core; extract all twelve parts into the same folder) | 20.5 GB | 6.4 GB total |
+| `DanQing-Data-v1-newbridge-d9-v1.zip` + `d9b` | New Bridge d9 layers | 2.2 GB | 0.7 GB |
+| `DanQing-Data-v1-newbridge-d10-v1-part1..4of4.zip` | New Bridge d10 (19,910 tiles) | 5.7 GB | 1.9 GB |
+| `DanQing-Data-v1-newbridge-d11-v1-part1..4of4.zip` | New Bridge d11 (43,986 tiles) | 6.9 GB | 2.4 GB |
+| `DanQing-Data-v1-newbridge-d12-v1-part1..4of4.zip` | New Bridge d12 (56,859 tiles) | 7.0 GB | 2.5 GB |
+| `DanQing-Data-v1-newbridge-d13-v1-part1..3of3.zip` | New Bridge d13 (41,657 tiles — deepest published layer) | 5.2 GB | 1.9 GB |
 
 **Usage**
 
@@ -49,6 +56,8 @@ Two differences vs. the release zips (GitHub 100 MB/file limit):
   per-tile guid/iModelId/changesetId/sha256 dropped — the engine reads
   treeId/contentId/byteLength/file only). The byte-exact original ships in the
   release zip `sweep-part1of3` and as LFS in the main repo.
+- **New Bridge is release-only** (not in this git tree): dozens of tiles exceed
+  100 MB (up to 316 MB), 47.5 GB total.
 
 ## 中文
 
@@ -64,6 +73,13 @@ Two differences vs. the release zips (GitHub 100 MB/file limit):
 | `DanQing-Data-v1-instances60.zip` | 60 Instances（实例化演示，3,595 瓦） | 305 MB | 135 MB |
 | `DanQing-Data-v1-bridge-edit-base.zip` | Bridge Edit（1.5km 桥梁——基础视图） | 660 MB | 199 MB |
 | `DanQing-Data-v1-bridge-edit-sweep-part1..3of3.zip` | Bridge Edit 全树 sweep（380,738 瓦；三段解压到同一目录叠加） | 5.1 GB | 共 1.8 GB |
+| `DanQing-Data-v1-newbridge-v1.zip` | New Bridge（10km 大桥——基础 manifests） | — | <1 MB |
+| `DanQing-Data-v1-newbridge-sweep-v1-part1..12of12.zip` | New Bridge sweep（d1–d8，5,408 瓦——浏览核心；十二段解压到同一目录叠加） | 20.5 GB | 共 6.4 GB |
+| `DanQing-Data-v1-newbridge-d9-v1.zip` + `d9b` | New Bridge d9 层 | 2.2 GB | 0.7 GB |
+| `DanQing-Data-v1-newbridge-d10-v1-part1..4of4.zip` | New Bridge d10（19,910 瓦） | 5.7 GB | 1.9 GB |
+| `DanQing-Data-v1-newbridge-d11-v1-part1..4of4.zip` | New Bridge d11（43,986 瓦） | 6.9 GB | 2.4 GB |
+| `DanQing-Data-v1-newbridge-d12-v1-part1..4of4.zip` | New Bridge d12（56,859 瓦） | 7.0 GB | 2.5 GB |
+| `DanQing-Data-v1-newbridge-d13-v1-part1..3of3.zip` | New Bridge d13（41,657 瓦——最深发布层） | 5.2 GB | 1.9 GB |
 
 **用法**
 
@@ -91,6 +107,8 @@ git clone git@github.com:chenjinxian/DanQing-Data.git   # SSH——免代理可�
   guid/iModelId/changesetId/sha256 字段删减——引擎只读
   treeId/contentId/byteLength/file）。字节级原件在 release zip
   `sweep-part1of3` 与主仓 LFS。
+- **New Bridge 仅走 release**（不在本 git 树）：数十个瓦超 100MB（最大
+  316MB），总量 47.5GB。
 
 完整性：每资产 sha256 见 [checksums.md](checksums.md)（下载脚本 manifest 内嵌
 同款）。数据渊源：itwinjs（MIT）示例 iModel 经 itwinjs display-test-app 采集的
