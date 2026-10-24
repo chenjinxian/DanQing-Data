@@ -28,8 +28,26 @@ Download from the **[data-v1 release](../../releases/tag/data-v1)** assets.
 
 - Repo clone: run `powershell -ExecutionPolicy Bypass -File scripts/data/download_dumps.ps1`
   from a DanQing checkout — it downloads, sha256-verifies, and extracts into
-  `third_party/tile-sample-assets/rpc-dumps/` (`-Model instances60` for a single model).
+  `third_party/tile-sample-assets/rpc-dumps/` (`-Model instances60` for a single
+  model; `-Model newbridge` fetches all 30 New Bridge zips).
 - Prebuilt app package: extract the zips into `data\rpc-dumps\` next to `run.cmd`.
+
+**Run & verify** (with the [DanQing demo app](https://github.com/chenjinxian/DanQing#quick-start)):
+
+1. Start the app (`run.cmd` in the prebuilt package, or build from source) and
+   click a model card on the Start page.
+2. Success = the status bar reads
+   `Opened <model> (N tile trees) — saved view rendered` within the per-model
+   baseline (Release, desktop GPU): Compatibility Test Seed **0.45 s** /
+   Mirukuru **0.44 s** / Baytown **0.44 s** / 60 Instances **0.45 s** /
+   House_Model **0.47 s** / Joe's House **0.57 s** / Bridge Edit **2.0 s** /
+   New Bridge seconds.
+3. Interact: wheel-zoom refines LOD live, drag pans, click selects+highlights.
+   Missing/partial data degrades gracefully (parent-LOD fallback), it never
+   crashes: a missing model shows a red status-bar line naming the absent path.
+4. Deeper verification (per-model expected visuals, `DANQING_OPEN_TRACE` /
+   `DANQING_TILE_TIME` / `DANQING_UI_TRACE` diagnostics, source-side test locks):
+   see the main repo's [performance & verification guide](https://github.com/chenjinxian/DanQing/blob/main/docs/大规模模型加载渲染性能与验证指南.md).
 
 Integrity: sha256 per asset in [checksums.md](checksums.md) (also embedded in the
 download script's manifest). Provenance: these are tile captures of itwinjs
@@ -86,8 +104,22 @@ Two differences vs. the release zips (GitHub 100 MB/file limit):
 - 源码仓：在 DanQing 检出根运行
   `powershell -ExecutionPolicy Bypass -File scripts/data/download_dumps.ps1`——
   自动下载、sha256 校验、解包到 `third_party/tile-sample-assets/rpc-dumps/`
-  （`-Model instances60` 单取一个模型）。
+  （`-Model instances60` 单取一个模型；`-Model newbridge` 取全部 30 包）。
 - 预编译包：解压到 `run.cmd` 旁的 `data\rpc-dumps\`。
+
+**运行与验证**（配合 [DanQing 示例程序](https://github.com/chenjinxian/DanQing#快速开始)）：
+
+1. 启动（预编译包跑 `run.cmd`，或源码构建），在 Start 页点模型卡。
+2. 成功判据 = 状态条显示
+   `Opened <model> (N tile trees) — saved view rendered`，耗时在逐模型基准内
+  （Release/桌面 GPU）：Compatibility Test Seed **0.45s** / Mirukuru **0.44s** /
+   Baytown **0.44s** / 60 Instances **0.45s** / House_Model **0.47s** /
+   Joe's House **0.57s** / Bridge Edit **2.0s** / New Bridge 秒级。
+3. 交互：滚轮缩放（LOD 实时细化）、拖拽平移、点选高亮。缺数据/部分数据**优雅
+   降级**（父瓦 LOD 兜底），不崩溃——缺模型时状态条红字标明缺席路径。
+4. 深度验证（逐模型预期画面 / `DANQING_OPEN_TRACE` / `DANQING_TILE_TIME` /
+   `DANQING_UI_TRACE` 诊断 / 源码侧测试锁）：见主仓
+   [大规模模型加载渲染性能与验证指南](https://github.com/chenjinxian/DanQing/blob/main/docs/大规模模型加载渲染性能与验证指南.md)。
 
 ### Git 通道（本仓工作树——免解压）
 
